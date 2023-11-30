@@ -16,6 +16,7 @@ export default function SocketChat() {
 
   const socketRef = useRef<Socket | null>(null);
   const isInitialized = useRef<boolean>(false); // 소켓이 초기화 되었는지 여부
+  const messagesEndRef = useRef<null | HTMLDivElement>(null); // 새로운 메시지가 추가될 때 스크롤을 맨 아래로 이동시키기 위한 ref
 
   useEffect(() => {
     // strict mode가 true일때나 다른 상황으로 인해 재랜더링 될때 useEffect가 2번 이상 실행되어 이벤트 리스너가 중복으로 설정되지 않기 위해 소켓 초기화 여부를 확인함
@@ -50,6 +51,15 @@ export default function SocketChat() {
       }
     };
   }, []);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    // 메시지 목록이 변경될 때 스크롤을 맨 아래로 이동
+    scrollToBottom();
+  }, [messages]);
 
   const sendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -122,6 +132,7 @@ export default function SocketChat() {
                     </div>
                   );
                 })}
+                <div ref={messagesEndRef} />
               </div>
               <form
                 onSubmit={sendMessage}
