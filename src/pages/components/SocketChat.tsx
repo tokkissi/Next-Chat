@@ -76,7 +76,7 @@ export default function SocketChat() {
   };
 
   return (
-    <div className="flex items-center min-h-screen justify-center bg-cyan-700">
+    <div className="flex items-center min-h-screen justify-center bg-[url('/images/웹소켓ai배경.png')] bg-cover">
       <div className="flex flex-col items-center justify-center w-full h-full">
         {!chosenUsername ? (
           <>
