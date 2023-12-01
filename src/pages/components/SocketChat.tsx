@@ -120,7 +120,7 @@ export default function SocketChat() {
             <p className="font-bold text-white text-xl mb-4">
               Username : {username}
             </p>
-            <div className="flex flex-col justify-end bg-white h-80 min-w-[10rem] rounded-md shadow-md overflow-hidden">
+            <div className="flex flex-col justify-end bg-white h-80 w-80 rounded-md shadow-md overflow-hidden">
               <div className="h-full overflow-y-scroll">
                 {messages.map((msg, i) => {
                   return (
